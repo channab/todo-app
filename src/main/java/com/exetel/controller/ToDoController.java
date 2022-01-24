@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
+import javax.validation.Valid;
 
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.keycloak.representations.AccessToken;
@@ -41,7 +42,7 @@ public class ToDoController {
 	
 	@RolesAllowed("app_user")
 	@PostMapping
-	public void createTodo(@RequestBody TodoDto todoDto, Principal principal) 
+	public void createTodo(@Valid @RequestBody TodoDto todoDto, Principal principal) 
 	{
 		todoDto.setUserId(getKeycloakUserId(principal));
 		todoService.createTodo(todoDto);
@@ -56,7 +57,7 @@ public class ToDoController {
 	
 	@RolesAllowed("app_user")
 	@PutMapping
-	public void updateTodo(@RequestBody TodoDto todoDto, Principal principal) 
+	public void updateTodo(@Valid @RequestBody TodoDto todoDto, Principal principal) 
 	{
 		todoService.updateTodo(todoDto);
 	}
