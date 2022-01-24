@@ -1,3 +1,7 @@
+/**
+ * ... Service to handle todo operations ...
+ */
+
 package com.exetel.service.impl;
 
 import java.util.List;
@@ -29,6 +33,9 @@ public class TodoServiceImpl implements TodoService {
 	private final TodoRepository todoRepository;
 	private final ModelMapper modelMapper;
 	
+	/**
+	 * ... Get user's todo list filter by todo status ...
+	 */
 	@Override
 	public List<TodoDto> findTodosByStatus(String userId, TodoStatus todoStatus) {
 		
@@ -41,6 +48,9 @@ public class TodoServiceImpl implements TodoService {
 		return todoDtos;
 	}
 
+	/**
+	 * ... Create new user from inputs ...
+	 */
 	@Override
 	public void createTodo(TodoDto tododto) {
 		
@@ -50,6 +60,9 @@ public class TodoServiceImpl implements TodoService {
 		todoRepository.save(todo);
 	}
 
+	/**
+	 * ... Get Todo details by ID ...
+	 */
 	@Override
 	public TodoDto getTodoById(long id) {
 		
@@ -64,6 +77,9 @@ public class TodoServiceImpl implements TodoService {
 		throw new NoSuchElementException(String.format("Todo item %d not found", id));
 	}
 
+	/**
+	 * ... Update todo from inputs ...
+	 */
 	@Override
 	public void updateTodo(TodoDto tododto) {
 		
@@ -84,6 +100,9 @@ public class TodoServiceImpl implements TodoService {
 		
 	}
 
+	/**
+	 * ... Change list of todo items' status to Done ...
+	 */
 	@Override
 	public void updateTodoStatusToDone(List<Long> ids) {
 		
@@ -96,6 +115,9 @@ public class TodoServiceImpl implements TodoService {
 
 	}
 
+	/**
+	 * ... Change todo item's status to Done ...
+	 */
 	@Override
 	public void updateTodoStatusToDone(Long id) {
 		
@@ -105,6 +127,9 @@ public class TodoServiceImpl implements TodoService {
 
 	}
 
+	/**
+	 * ... Delete todo by ID ...
+	 */
 	@Override
 	public void deleteTodo(Long id) {
 		
