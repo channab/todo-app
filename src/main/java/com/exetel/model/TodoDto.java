@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import com.exetel.enums.TodoStatus;
 

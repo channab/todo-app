@@ -18,23 +18,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
 	@Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-            .apiInfo(generateAPIInfo())
-            .select()
-            .apis(RequestHandlerSelectors.basePackage("com.exetel.controller"))
-            .paths(PathSelectors.any())
-            .build();
-    }
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(generateAPIInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("com.exetel.controller")).paths(PathSelectors.any()).build();
+	}
 
-    //Api information
-    private ApiInfo generateAPIInfo() {
-        return new ApiInfo("TOdo API", "API for todo operations", "1.0.0",
-            "https://extel.com", getContacts(), "", "", new ArrayList());
-    }
+	// Api information
+	private ApiInfo generateAPIInfo() {
+		return new ApiInfo("TOdo API", "API for todo operations", "1.0.0", "https://extel.com", getContacts(), "", "",
+				new ArrayList());
+	}
 
-    // Developer Contacts
-    private Contact getContacts() {
-        return new Contact("Channa Bandara", "", "abeetha87@gmail.com");
-    }
+	// Developer Contacts
+	private Contact getContacts() {
+		return new Contact("Channa Bandara", "", "abeetha87@gmail.com");
+	}
 }

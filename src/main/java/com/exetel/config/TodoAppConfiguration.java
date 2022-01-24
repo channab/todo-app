@@ -9,7 +9,7 @@ public class TodoAppConfiguration {
 
 	@Bean
 	public ModelMapper modelMapper() {
-		
+
 		return new ModelMapper();
 	}
 }

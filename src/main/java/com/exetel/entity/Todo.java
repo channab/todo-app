@@ -16,8 +16,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.exetel.enums.TodoStatus;
-import com.exetel.model.TodoDto;
-import com.exetel.model.TodoDto.TodoDtoBuilder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,8 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "todo",
-indexes = {@Index(name = "idx_todo_user_id", columnList="userId", unique = false)})
+@Table(name = "todo", indexes = { @Index(name = "idx_todo_user_id", columnList = "userId", unique = false) })
 public class Todo {
 
 	@Id

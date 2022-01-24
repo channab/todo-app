@@ -32,61 +32,56 @@ import lombok.RequiredArgsConstructor;
 public class ToDoController {
 
 	private final TodoService todoService;
-	
+
 	@RolesAllowed("app_user")
 	@GetMapping
 	public List<TodoDto> getToDos(@RequestParam(value = "status") TodoStatus todoStatus, Principal principal) {
-		
+
 		return todoService.findTodosByStatus(getKeycloakUserId(principal), todoStatus);
 	}
-	
+
 	@RolesAllowed("app_user")
 	@PostMapping
-	public void createTodo(@Valid @RequestBody TodoDto todoDto, Principal principal) 
-	{
+	public void createTodo(@Valid @RequestBody TodoDto todoDto, Principal principal) {
 		todoDto.setUserId(getKeycloakUserId(principal));
 		todoService.createTodo(todoDto);
 	}
-	
+
 	@RolesAllowed("app_user")
 	@GetMapping("/{id}")
 	public TodoDto getToDo(@PathVariable long id, Principal principal) {
-		
+
 		return todoService.getTodoById(id);
 	}
-	
+
 	@RolesAllowed("app_user")
 	@PutMapping
-	public void updateTodo(@Valid @RequestBody TodoDto todoDto, Principal principal) 
-	{
+	public void updateTodo(@Valid @RequestBody TodoDto todoDto, Principal principal) {
 		todoService.updateTodo(todoDto);
 	}
-	
+
 	@RolesAllowed("app_user")
 	@PostMapping("/update-statuses")
-	public void updateTodosStatuses(@RequestBody List<Long> ids, Principal principal) 
-	{
+	public void updateTodosStatuses(@RequestBody List<Long> ids, Principal principal) {
 		todoService.updateTodoStatusToDone(ids);
 	}
-	
+
 	@RolesAllowed("app_user")
 	@PostMapping("/update-status")
-	public void updateTodosStatuses(@RequestBody long id, Principal principal) 
-	{
+	public void updateTodosStatuses(@RequestBody long id, Principal principal) {
 		todoService.updateTodoStatusToDone(id);
 	}
-	
+
 	@RolesAllowed("app_user")
 	@DeleteMapping("/{id}")
-	public void deleteTodo(@PathVariable long id, Principal principal) 
-	{
+	public void deleteTodo(@PathVariable long id, Principal principal) {
 		todoService.deleteTodo(id);
 	}
-	
+
 	private String getKeycloakUserId(Principal principal) {
 		KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
-        AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
+		AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
 
-        return accessToken.getId();
+		return accessToken.getId();
 	}
 }
